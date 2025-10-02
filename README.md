@@ -1,10 +1,10 @@
-# DailyZen 基础设施管理
+# 基础设施管理 (Infrastructure)
 
-这个目录包含了 DailyZen 项目的完整基础设施服务，提供数据库、缓存、搜索、存储、消息队列等服务。支持本地开发和云端部署。
+这个目录包含了完整的本地开发环境基础设施服务，提供数据库、缓存、搜索、存储、消息队列等服务。支持本地开发和云端部署。
 
 ## 🎯 项目概述
 
-DailyZen 基础设施管理工具为整个项目提供：
+基础设施管理工具提供：
 - **本地开发环境**：完整的开发基础设施
 - **云端部署支持**：Railway 等云平台部署
 - **统一管理**：Makefile 标准化管理
@@ -12,45 +12,43 @@ DailyZen 基础设施管理工具为整个项目提供：
 
 ## 🛠️ 服务列表
 
-### 核心数据库服务
-- **PostgreSQL 15** - 主数据库，存储用户数据、禅语内容
-- **MySQL 8.0** - 备用数据库，支持特定功能
-- **MongoDB 7** - 文档数据库，存储非结构化数据
+### 数据库服务
+- **PostgreSQL 15** - 关系型数据库，支持 ACID 事务
+- **MySQL 8.0** - 关系型数据库，高性能查询
+- **MongoDB 7** - 文档数据库，灵活的数据结构
 
-### 缓存与性能
-- **Redis 7** - 内存缓存，提升 API 响应速度
+### 缓存服务
+- **Redis 7** - 内存缓存，高性能数据存储
 
-### 搜索与分析
-- **Elasticsearch 8.11** - 全文搜索，支持禅语内容搜索
-- **Kibana 8.11** - 数据可视化，监控系统性能
+### 搜索服务
+- **Elasticsearch 8.11** - 全文搜索引擎
+- **Kibana 8.11** - 数据可视化和分析平台
 
-### 存储与文件
-- **MinIO** - 对象存储，存储用户头像、图片等文件
+### 存储服务
+- **MinIO** - 对象存储，S3 兼容的存储服务
 
-### 消息与任务
-- **RabbitMQ 3** - 消息队列，处理异步任务和通知
+### 消息队列
+- **RabbitMQ 3** - 消息队列，支持多种消息模式
 
 ## 🎯 服务使用场景
 
-### 在 DailyZen 项目中的应用
+### 数据库服务
+- **PostgreSQL**: 主数据库，存储结构化数据
+- **MySQL**: 备用数据库，支持特定业务需求
+- **MongoDB**: 存储非结构化数据和日志
 
-#### 数据库服务
-- **PostgreSQL**: 存储用户信息、禅语内容、成就系统、评论等
-- **MySQL**: 存储统计数据、日志记录等
-- **MongoDB**: 存储用户行为数据、个性化推荐数据
+### 缓存服务
+- **Redis**: 缓存热点数据，提升系统性能
 
-#### 缓存服务
-- **Redis**: 缓存热门禅语、用户会话、API 响应等
+### 搜索服务
+- **Elasticsearch**: 实现全文搜索和数据分析
+- **Kibana**: 数据可视化，监控系统状态
 
-#### 搜索服务
-- **Elasticsearch**: 实现禅语内容搜索、用户内容搜索
-- **Kibana**: 监控 API 性能、分析用户行为、系统健康监控
+### 存储服务
+- **MinIO**: 存储文件、图片、视频等静态资源
 
-#### 存储服务
-- **MinIO**: 存储用户头像、禅修照片、音频文件等
-
-#### 消息队列
-- **RabbitMQ**: 处理邮件发送、推送通知、数据统计等异步任务
+### 消息队列
+- **RabbitMQ**: 处理异步任务，解耦系统组件
 
 ## 🚀 快速开始
 
@@ -62,28 +60,19 @@ DailyZen 基础设施管理工具为整个项目提供：
 # 方法1: 使用 Makefile (推荐)
 make start
 
-# 方法2: 使用管理脚本
-./manage.sh start
-
-# 方法3: 使用 Docker Compose
+# 方法2: 使用 Docker Compose
 docker-compose up -d
 ```
 
 #### 按需启动服务
 
 ```bash
-# 使用 Makefile (推荐)
+# 使用 Makefile
 make start-db      # 启动数据库服务
 make start-cache   # 启动缓存服务
 make start-search  # 启动搜索服务
 make start-storage # 启动存储服务
 make start-queue   # 启动消息队列
-
-# 或使用管理脚本
-./manage.sh start-db
-./manage.sh start-cache
-./manage.sh start-search
-./manage.sh start-storage
 ```
 
 ### 云端部署 (Railway)
@@ -161,27 +150,27 @@ make start-queue   # 启动消息队列
 make monitor       # 显示服务访问地址
 ```
 
-### 使用管理脚本
+### 使用 Docker Compose
 
 ```bash
 # 基础命令
 # 启动所有服务
-./manage.sh start
+docker-compose up -d
 
 # 停止所有服务
-./manage.sh stop
+docker-compose down
 
 # 重启所有服务
-./manage.sh restart
+docker-compose restart
 
 # 查看服务状态
-./manage.sh status
+docker-compose ps
 
 # 查看服务日志
-./manage.sh logs
+docker-compose logs -f
 
 # 清理所有数据（包括数据卷）
-./manage.sh clean
+docker-compose down -v
 ```
 
 ## 服务配置
@@ -266,7 +255,7 @@ make monitor       # 显示服务访问地址
 1. 检查网络是否存在: `docker network ls`
 2. 重新创建网络: `docker network create dev-network`
 
-## 💡 开发建议
+## 开发建议
 
 ### 本地开发
 1. **使用 Makefile**: 推荐使用 `make` 命令进行管理，更加标准化
@@ -282,7 +271,7 @@ make monitor       # 显示服务访问地址
 4. **数据安全**: 定期备份和加密敏感数据
 5. **性能优化**: 根据使用情况调整资源配置
 
-## 🔧 环境配置
+## 环境配置
 
 ### 开发环境
 - 所有服务都在本地运行
@@ -299,7 +288,7 @@ make monitor       # 显示服务访问地址
 - 高可用和负载均衡
 - 监控和日志收集
 
-## 📊 监控与维护
+## 监控与维护
 
 ### 健康检查
 ```bash
@@ -331,7 +320,7 @@ make backup-mongodb
 3. **网络问题**: 检查网络配置和防火墙
 4. **性能问题**: 监控资源使用情况
 
-## 🚀 部署指南
+## 部署指南
 
 ### Railway 部署
 1. 创建 Railway 项目
@@ -345,7 +334,7 @@ make backup-mongodb
 - **Google Cloud**: 使用 Cloud SQL、Memorystore、Cloud Storage 等
 - **Azure**: 使用 Azure Database、Redis Cache、Blob Storage 等
 
-## 📝 更新日志
+## 更新日志
 
 ### v1.0.0
 - 初始版本发布
