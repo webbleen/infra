@@ -1,3 +1,5 @@
+[English](README.md) | [日本語](README.ja.md)
+
 # 基础设施管理 (Infrastructure)
 
 这个目录包含了完整的本地开发环境基础设施服务，提供数据库、缓存、搜索、存储、消息队列等服务。支持本地开发和云端部署。
@@ -300,12 +302,3 @@ make backup-mongodb
 - 完整的 Makefile 管理
 - Railway 部署支持
 
----
-
-## 多语言支持
-
-本项目支持多种语言的文档：
-
-- [English](README.md) - 英文版本文档
-- [中文](README.zh-CN.md) - 中文版本文档  
-- [日本語](README.ja.md) - 日文版本文档

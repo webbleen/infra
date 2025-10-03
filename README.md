@@ -1,3 +1,5 @@
+[中文](README.zh-CN.md) | [日本語](README.ja.md)
+
 # Infrastructure Management
 
 This directory contains a complete local development environment infrastructure services, providing database, cache, search, storage, message queue and other services. Supports local development and cloud deployment.
@@ -341,13 +343,3 @@ make backup-mongodb
 - Support for all core services
 - Complete Makefile management
 - Railway deployment support
-
----
-
-## Multi-language Support
-
-This project supports documentation in multiple languages:
-
-- [English](README.md) - English documentation
-- [中文](README.zh-CN.md) - Chinese documentation  
-- [日本語](README.ja.md) - Japanese documentation
