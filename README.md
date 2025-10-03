@@ -341,3 +341,13 @@ make backup-mongodb
 - Support for all core services
 - Complete Makefile management
 - Railway deployment support
+
+---
+
+## Multi-language Support
+
+This project supports documentation in multiple languages:
+
+- [English](README.md) - English documentation
+- [中文](README.zh-CN.md) - Chinese documentation  
+- [日本語](README.ja.md) - Japanese documentation
