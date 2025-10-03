@@ -1,10 +1,10 @@
 version: '3.8'
 
-# 本地开发环境基础设施服务
-# 为所有项目提供通用的数据库、缓存等服务
+# Local development environment infrastructure services
+# Provides common database, cache and other services for all projects
 
 services:
-  # PostgreSQL 数据库
+  # PostgreSQL Database
   postgres:
     image: postgres:15
     container_name: dev-postgres
@@ -28,7 +28,7 @@ services:
       timeout: 5s
       retries: 5
 
-  # Redis 缓存
+  # Redis Cache
   redis:
     image: redis:7-alpine
     container_name: dev-redis
@@ -47,7 +47,7 @@ services:
       timeout: 5s
       retries: 5
 
-  # MongoDB 数据库
+  # MongoDB Database
   mongodb:
     image: mongo:7
     container_name: dev-mongodb
@@ -68,7 +68,7 @@ services:
       timeout: 5s
       retries: 5
 
-  # MySQL 数据库
+  # MySQL Database
   mysql:
     image: mysql:8.0
     container_name: dev-mysql
@@ -91,7 +91,7 @@ services:
       timeout: 5s
       retries: 5
 
-  # Elasticsearch 搜索引擎
+  # Elasticsearch Search Engine
   elasticsearch:
     image: elasticsearch:8.11.0
     container_name: dev-elasticsearch
@@ -114,7 +114,7 @@ services:
       timeout: 10s
       retries: 5
 
-  # Kibana 日志分析
+  # Kibana Log Analysis
   kibana:
     image: kibana:8.11.0
     container_name: dev-kibana
@@ -130,7 +130,7 @@ services:
       - dev-network
     restart: unless-stopped
 
-  # MinIO 对象存储
+  # MinIO Object Storage
   minio:
     image: minio/minio:latest
     container_name: dev-minio
@@ -153,7 +153,7 @@ services:
       timeout: 20s
       retries: 3
 
-  # RabbitMQ 消息队列
+  # RabbitMQ Message Queue
   rabbitmq:
     image: rabbitmq:3-management
     container_name: dev-rabbitmq

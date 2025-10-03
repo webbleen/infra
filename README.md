@@ -1,95 +1,95 @@
-# 基础设施管理 (Infrastructure)
+# Infrastructure Management
 
-这个目录包含了完整的本地开发环境基础设施服务，提供数据库、缓存、搜索、存储、消息队列等服务。支持本地开发和云端部署。
+This directory contains a complete local development environment infrastructure services, providing database, cache, search, storage, message queue and other services. Supports local development and cloud deployment.
 
-## 🎯 项目概述
+## 🎯 Project Overview
 
-基础设施管理工具提供：
-- **本地开发环境**：完整的开发基础设施
-- **云端部署支持**：Railway 等云平台部署
-- **统一管理**：Makefile 标准化管理
-- **多环境支持**：开发、测试、生产环境配置
+Infrastructure management tools provide:
+- **Local Development Environment**: Complete development infrastructure
+- **Cloud Deployment Support**: Railway and other cloud platform deployment
+- **Unified Management**: Makefile standardized management
+- **Multi-Environment Support**: Development, testing, production environment configuration
 
-## 🛠️ 服务列表
+## 🛠️ Service List
 
-### 数据库服务
-- **PostgreSQL 15** - 关系型数据库，支持 ACID 事务
-- **MySQL 8.0** - 关系型数据库，高性能查询
-- **MongoDB 7** - 文档数据库，灵活的数据结构
+### Database Services
+- **PostgreSQL 15** - Relational database with ACID transaction support
+- **MySQL 8.0** - Relational database with high-performance queries
+- **MongoDB 7** - Document database with flexible data structure
 
-### 缓存服务
-- **Redis 7** - 内存缓存，高性能数据存储
+### Cache Services
+- **Redis 7** - In-memory cache with high-performance data storage
 
-### 搜索服务
-- **Elasticsearch 8.11** - 全文搜索引擎
-- **Kibana 8.11** - 数据可视化和分析平台
+### Search Services
+- **Elasticsearch 8.11** - Full-text search engine
+- **Kibana 8.11** - Data visualization and analysis platform
 
-### 存储服务
-- **MinIO** - 对象存储，S3 兼容的存储服务
+### Storage Services
+- **MinIO** - Object storage, S3-compatible storage service
 
-### 消息队列
-- **RabbitMQ 3** - 消息队列，支持多种消息模式
+### Message Queue
+- **RabbitMQ 3** - Message queue supporting multiple message patterns
 
-## 🎯 服务使用场景
+## 🎯 Service Use Cases
 
-### 数据库服务
-- **PostgreSQL**: 主数据库，存储结构化数据
-- **MySQL**: 备用数据库，支持特定业务需求
-- **MongoDB**: 存储非结构化数据和日志
+### Database Services
+- **PostgreSQL**: Primary database for storing structured data
+- **MySQL**: Backup database supporting specific business requirements
+- **MongoDB**: Store unstructured data and logs
 
-### 缓存服务
-- **Redis**: 缓存热点数据，提升系统性能
+### Cache Services
+- **Redis**: Cache hot data to improve system performance
 
-### 搜索服务
-- **Elasticsearch**: 实现全文搜索和数据分析
-- **Kibana**: 数据可视化，监控系统状态
+### Search Services
+- **Elasticsearch**: Implement full-text search and data analysis
+- **Kibana**: Data visualization and system status monitoring
 
-### 存储服务
-- **MinIO**: 存储文件、图片、视频等静态资源
+### Storage Services
+- **MinIO**: Store files, images, videos and other static resources
 
-### 消息队列
-- **RabbitMQ**: 处理异步任务，解耦系统组件
+### Message Queue
+- **RabbitMQ**: Handle asynchronous tasks and decouple system components
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 本地开发环境
+### Local Development Environment
 
-#### 启动所有服务
+#### Start All Services
 
 ```bash
-# 方法1: 使用 Makefile (推荐)
+# Method 1: Using Makefile (Recommended)
 make start
 
-# 方法2: 使用 Docker Compose
+# Method 2: Using Docker Compose
 docker-compose up -d
 ```
 
-#### 按需启动服务
+#### Start Services On-Demand
 
 ```bash
-# 使用 Makefile
-make start-db      # 启动数据库服务
-make start-cache   # 启动缓存服务
-make start-search  # 启动搜索服务
-make start-storage # 启动存储服务
-make start-queue   # 启动消息队列
+# Using Makefile
+make start-db      # Start database services
+make start-cache   # Start cache services
+make start-search  # Start search services
+make start-storage # Start storage services
+make start-queue   # Start message queue
 ```
 
-### 云端部署 (Railway)
+### Cloud Deployment (Railway)
 
-#### 支持的服务
-- ✅ **MinIO** - 对象存储
-- ✅ **RabbitMQ** - 消息队列
-- ⚠️ **Elasticsearch** - 需要付费计划
-- ⚠️ **Kibana** - 需要付费计划
+#### Supported Services
+- ✅ **MinIO** - Object storage
+- ✅ **RabbitMQ** - Message queue
+- ⚠️ **Elasticsearch** - Requires paid plan
+- ⚠️ **Kibana** - Requires paid plan
 
-#### 部署步骤
-1. 在 Railway 创建新项目
-2. 添加 PostgreSQL 和 Redis 服务（Railway 原生）
-3. 部署 MinIO 和 RabbitMQ（Docker 方式）
-4. 根据需要部署 Elasticsearch 和 Kibana
+#### Deployment Steps
+1. Create a new project on Railway
+2. Add PostgreSQL and Redis services (Railway native)
+3. Deploy MinIO and RabbitMQ (Docker method)
+4. Deploy Elasticsearch and Kibana as needed
 
-#### Railway 配置示例
+#### Railway Configuration Example
 ```yaml
 # railway-docker-compose.yml
 version: '3.8'
@@ -108,115 +108,115 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
 ```
 
-## 管理命令
+## Management Commands
 
-### 使用 Makefile (推荐)
+### Using Makefile (Recommended)
 
 ```bash
-# 查看所有可用命令
+# View all available commands
 make help
 
-# 基础命令
-make start      # 启动所有服务
-make stop       # 停止所有服务
-make restart    # 重启所有服务
-make logs       # 查看服务日志
-make status     # 查看服务状态
-make clean      # 清理所有数据（包括数据卷）
+# Basic commands
+make start      # Start all services
+make stop       # Stop all services
+make restart    # Restart all services
+make logs       # View service logs
+make status     # View service status
+make clean      # Clean all data (including data volumes)
 
-# 数据库连接
-make shell-postgres  # 连接到 PostgreSQL
-make shell-mysql     # 连接到 MySQL
-make shell-mongodb   # 连接到 MongoDB
-make shell-redis     # 连接到 Redis
+# Database connections
+make shell-postgres  # Connect to PostgreSQL
+make shell-mysql     # Connect to MySQL
+make shell-mongodb   # Connect to MongoDB
+make shell-redis     # Connect to Redis
 
-# 数据备份
-make backup-postgres  # 备份 PostgreSQL
-make backup-mysql     # 备份 MySQL
-make backup-mongodb   # 备份 MongoDB
+# Data backup
+make backup-postgres  # Backup PostgreSQL
+make backup-mysql     # Backup MySQL
+make backup-mongodb   # Backup MongoDB
 
-# 数据恢复
-make restore-postgres FILE=backup.sql  # 恢复 PostgreSQL
-make restore-mysql FILE=backup.sql     # 恢复 MySQL
+# Data restore
+make restore-postgres FILE=backup.sql  # Restore PostgreSQL
+make restore-mysql FILE=backup.sql     # Restore MySQL
 
-# 按需启动
-make start-db      # 启动数据库服务
-make start-cache   # 启动缓存服务
-make start-search  # 启动搜索服务
-make start-storage # 启动存储服务
-make start-queue   # 启动消息队列
+# On-demand startup
+make start-db      # Start database services
+make start-cache   # Start cache services
+make start-search  # Start search services
+make start-storage # Start storage services
+make start-queue   # Start message queue
 
-# 监控
-make monitor       # 显示服务访问地址
+# Monitoring
+make monitor       # Display service access addresses
 ```
 
-### 使用 Docker Compose
+### Using Docker Compose
 
 ```bash
-# 基础命令
-# 启动所有服务
+# Basic commands
+# Start all services
 docker-compose up -d
 
-# 停止所有服务
+# Stop all services
 docker-compose down
 
-# 重启所有服务
+# Restart all services
 docker-compose restart
 
-# 查看服务状态
+# View service status
 docker-compose ps
 
-# 查看服务日志
+# View service logs
 docker-compose logs -f
 
-# 清理所有数据（包括数据卷）
+# Clean all data (including data volumes)
 docker-compose down -v
 ```
 
-## 服务配置
+## Service Configuration
 
 ### PostgreSQL
-- **端口**: 5432
-- **用户名**: postgres
-- **密码**: password
-- **数据库**: postgres, dailyzen, test_db, staging_db
+- **Port**: 5432
+- **Username**: postgres
+- **Password**: password
+- **Databases**: postgres, dailyzen, test_db, staging_db
 
 ### MySQL
-- **端口**: 3306
-- **用户名**: root / dev
-- **密码**: password
-- **数据库**: dev
+- **Port**: 3306
+- **Username**: root / dev
+- **Password**: password
+- **Database**: dev
 
 ### MongoDB
-- **端口**: 27017
-- **用户名**: admin
-- **密码**: password
+- **Port**: 27017
+- **Username**: admin
+- **Password**: password
 
 ### Redis
-- **端口**: 6379
-- **无密码**
+- **Port**: 6379
+- **No password**
 
 ### Elasticsearch
-- **端口**: 9200 (HTTP), 9300 (TCP)
-- **无认证**
+- **Port**: 9200 (HTTP), 9300 (TCP)
+- **No authentication**
 
 ### Kibana
-- **端口**: 5601
-- **无认证**
+- **Port**: 5601
+- **No authentication**
 
 ### MinIO
-- **端口**: 9000 (API), 9001 (Console)
-- **用户名**: admin
-- **密码**: password123
+- **Port**: 9000 (API), 9001 (Console)
+- **Username**: admin
+- **Password**: password123
 
 ### RabbitMQ
-- **端口**: 5672 (AMQP), 15672 (Management)
-- **用户名**: admin
-- **密码**: password
+- **Port**: 5672 (AMQP), 15672 (Management)
+- **Username**: admin
+- **Password**: password
 
-## 数据持久化
+## Data Persistence
 
-所有数据都存储在 Docker 数据卷中，即使容器重启数据也不会丢失。数据卷位置：
+All data is stored in Docker data volumes, so data will not be lost even if containers restart. Data volume locations:
 
 - PostgreSQL: `postgres_data`
 - MySQL: `mysql_data`
@@ -226,9 +226,9 @@ docker-compose down -v
 - MinIO: `minio_data`
 - RabbitMQ: `rabbitmq_data`
 
-## 网络配置
+## Network Configuration
 
-所有服务都在 `dev-network` 网络中，可以通过服务名相互访问：
+All services are in the `dev-network` network and can access each other by service name:
 
 - PostgreSQL: `postgres:5432`
 - MySQL: `mysql:3306`
@@ -239,105 +239,105 @@ docker-compose down -v
 - MinIO: `minio:9000`
 - RabbitMQ: `rabbitmq:5672`
 
-## 故障排除
+## Troubleshooting
 
-### 服务启动失败
-1. 检查 Docker 是否运行
-2. 检查端口是否被占用
-3. 查看服务日志: `make logs` 或 `docker-compose logs`
+### Service Startup Failure
+1. Check if Docker is running
+2. Check if ports are occupied
+3. View service logs: `make logs` or `docker-compose logs`
 
-### 数据丢失
-1. 检查数据卷是否存在: `docker volume ls`
-2. 检查容器状态: `make status`
-3. 如果需要重置数据，运行: `make clean`
+### Data Loss
+1. Check if data volumes exist: `docker volume ls`
+2. Check container status: `make status`
+3. If you need to reset data, run: `make clean`
 
-### 网络连接问题
-1. 检查网络是否存在: `docker network ls`
-2. 重新创建网络: `docker network create dev-network`
+### Network Connection Issues
+1. Check if network exists: `docker network ls`
+2. Recreate network: `docker network create dev-network`
 
-## 开发建议
+## Development Recommendations
 
-### 本地开发
-1. **使用 Makefile**: 推荐使用 `make` 命令进行管理，更加标准化
-2. **数据备份**: 定期备份重要数据
-3. **资源监控**: 注意内存和磁盘使用情况
-4. **版本控制**: 将配置文件纳入版本控制
-5. **环境隔离**: 为不同项目使用不同的数据卷前缀
+### Local Development
+1. **Use Makefile**: Recommended to use `make` commands for management, more standardized
+2. **Data Backup**: Regularly backup important data
+3. **Resource Monitoring**: Pay attention to memory and disk usage
+4. **Version Control**: Include configuration files in version control
+5. **Environment Isolation**: Use different data volume prefixes for different projects
 
-### 生产部署
-1. **服务选择**: 根据实际需求选择服务，避免过度配置
-2. **成本优化**: 优先使用云平台原生服务
-3. **监控告警**: 设置适当的监控和告警机制
-4. **数据安全**: 定期备份和加密敏感数据
-5. **性能优化**: 根据使用情况调整资源配置
+### Production Deployment
+1. **Service Selection**: Choose services based on actual needs, avoid over-configuration
+2. **Cost Optimization**: Prioritize cloud platform native services
+3. **Monitoring and Alerts**: Set up appropriate monitoring and alert mechanisms
+4. **Data Security**: Regularly backup and encrypt sensitive data
+5. **Performance Optimization**: Adjust resource configuration based on usage
 
-## 环境配置
+## Environment Configuration
 
-### 开发环境
-- 所有服务都在本地运行
-- 使用 Docker 数据卷持久化数据
-- 支持热重载和调试
+### Development Environment
+- All services run locally
+- Use Docker data volumes for data persistence
+- Support hot reload and debugging
 
-### 测试环境
-- 使用 Railway 或类似平台
-- 配置与生产环境相似
-- 用于集成测试和性能测试
+### Testing Environment
+- Use Railway or similar platforms
+- Configuration similar to production environment
+- Used for integration testing and performance testing
 
-### 生产环境
-- 使用云平台原生服务
-- 高可用和负载均衡
-- 监控和日志收集
+### Production Environment
+- Use cloud platform native services
+- High availability and load balancing
+- Monitoring and log collection
 
-## 监控与维护
+## Monitoring and Maintenance
 
-### 健康检查
+### Health Checks
 ```bash
-# 检查所有服务状态
+# Check all service status
 make status
 
-# 查看服务日志
+# View service logs
 make logs
 
-# 监控服务访问地址
+# Monitor service access addresses
 make monitor
 ```
 
-### 数据备份
+### Data Backup
 ```bash
-# 备份 PostgreSQL
+# Backup PostgreSQL
 make backup-postgres
 
-# 备份 MySQL
+# Backup MySQL
 make backup-mysql
 
-# 备份 MongoDB
+# Backup MongoDB
 make backup-mongodb
 ```
 
-### 故障排除
-1. **服务启动失败**: 检查 Docker 状态和端口占用
-2. **数据丢失**: 检查数据卷和备份
-3. **网络问题**: 检查网络配置和防火墙
-4. **性能问题**: 监控资源使用情况
+### Troubleshooting
+1. **Service startup failure**: Check Docker status and port occupancy
+2. **Data loss**: Check data volumes and backups
+3. **Network issues**: Check network configuration and firewall
+4. **Performance issues**: Monitor resource usage
 
-## 部署指南
+## Deployment Guide
 
-### Railway 部署
-1. 创建 Railway 项目
-2. 添加数据库和缓存服务
-3. 部署 MinIO 和 RabbitMQ
-4. 配置环境变量
-5. 部署应用服务
+### Railway Deployment
+1. Create Railway project
+2. Add database and cache services
+3. Deploy MinIO and RabbitMQ
+4. Configure environment variables
+5. Deploy application services
 
-### 其他云平台
-- **AWS**: 使用 RDS、ElastiCache、S3 等服务
-- **Google Cloud**: 使用 Cloud SQL、Memorystore、Cloud Storage 等
-- **Azure**: 使用 Azure Database、Redis Cache、Blob Storage 等
+### Other Cloud Platforms
+- **AWS**: Use RDS, ElastiCache, S3 and other services
+- **Google Cloud**: Use Cloud SQL, Memorystore, Cloud Storage, etc.
+- **Azure**: Use Azure Database, Redis Cache, Blob Storage, etc.
 
-## 更新日志
+## Changelog
 
 ### v1.0.0
-- 初始版本发布
-- 支持所有核心服务
-- 完整的 Makefile 管理
-- Railway 部署支持
+- Initial version release
+- Support for all core services
+- Complete Makefile management
+- Railway deployment support
